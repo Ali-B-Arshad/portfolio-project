@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Ali Bin Arshad</title>
+    <title>Ali's Blog</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
 
@@ -43,51 +43,39 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
-               <a class="nav-item nav-link " href="https://www.facebook.com/alii.b.arshadd">Facebook</a>
+                <a class="nav-item nav-link " href="https://www.facebook.com/alii.b.arshadd">Facebook</a>
                 <a class="nav-item nav-link " href="https://www.instagram.com/ali_bin_arshad">Instagram</a>
                 <a class="nav-item nav-link" href="{% static 'resume.pdf' %}">Resume</a>
-                <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+                <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
             </div>
         </div>
     </nav>
 </header>
 
 <main role="main">
+    <div class="container">
+        <h1 class="text-center pt-4">Welcome to Ali's Blog</h1>
+        <br/>
+        <h2>Latest Posts</h2>
+        <hr/>
 
-    <section class="jumbotron text-center">
-        <div class="container">
-            <h1 class="jumbotron-heading">Hi, I'm Ali.</h1>
-            <p class="lead text-muted">Web Developer | Graphic Designer | Photographer<br>"Jack of all trades, master of none." </p>
-            <p>
-                <a href="mailto:ali.b.arshadd@gmail.com" class="btn btn-primary my-2">Email me</a>
-            </p>
-            <img src="{% static 'DSC_0032-2.jpg' %}" height="300" />
+        {% for blog in blogs.all %}
+            <a href=""><h3>{{ blog.title }}</h3></a>
+            {{ blog.Publication_date_pretty }}
+            <br/>
+            <img class="img-fluid" src="{{blog.image.url }}" height="300" width="300" />
+            <br/>
+            <p>{{ blog.summary }}</p>
+        {% endfor %}
 
-        </div>
-    </section>
 
-    <div class="album py-5 bg-light">
-        <div class="container">
-
-            <div class="row">
-                {% for Project in projects.all %}
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <img class="bd-placeholder-img card-img-top" src="{{ Project.image.url }}"/>
-                        <div class="card-body">
-                            <p class="card-text">{{ Project.summary }}</p>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
     </div>
 
 </main>
 
 <footer class="text-muted">
     <div class="container text-center">
+        <br/>
         <p>© Ali Bin Arshad {% now "Y"%}</p>
 
     </div>
