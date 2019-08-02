@@ -1,5 +1,8 @@
 from django.db import models
 
-class Blog(models.Model):
+
+class Blogs(models.Model):
+    title = models.CharField(max_length=255)
+    Publication_date = models.DateTimeField()
     image = models.ImageField(upload_to='images/')
-    summary = models.CharField(max_length=200)
+    Body = models.TextField()
